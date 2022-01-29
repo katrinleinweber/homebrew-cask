@@ -1,0 +1,16 @@
+# This implements the checks listed in
+# .github/PULL_REQUEST_TEMPLATE.md
+
+pre-push:
+  parallel: true
+  commands:
+
+    audit:
+      glob: "Casks/*.rb"
+      run: brew audit --cask {staged_files}
+
+    style:
+      glob: "Casks/*.rb"
+      run: brew style --fix {staged_files}
+
+# See https://github.com/evilmartians/lefthook#readme for Lefthook instructions.
